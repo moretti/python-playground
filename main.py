@@ -30,7 +30,7 @@ JYTHON_SANDBOX_URL = 'http://jy-sandbox.appspot.com/sandbox'
 class Index(webapp2.RequestHandler):
 
     def get(self):
-        template_values = {'body': 'print "Hello, playground"'}
+        template_values = {'body': 'print "Hello, playground"\n'}
         template = JINJA_ENVIRONMENT.get_template('index.html')
         self.response.write(template.render(template_values))
 
