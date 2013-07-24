@@ -20,21 +20,20 @@
         <script src="static/js/app/main.js"></script>
     </head>
     <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" href="#">Python Playground</a>
+                    <a class="brand" href="/"><span class="brand-title">Python Playground<span></a>
                     <div class="btn-group">
-                        <button id="run" class="btn">Run</button>
-                        <button id="format" class="btn">Format</button>
-                        <button id="share" class="btn">Share</button>
+                        <button id="run" class="btn btn-primary">Run</button>
+                        <button id="format" class="btn btn-primary">Format</button>
+                        <button id="share" class="btn btn-primary">Share</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="container">
-            
             <div id="wrap">
                 <textarea itemprop="description" id="code" name="code" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false">{{ body }}</textarea>
             </div>

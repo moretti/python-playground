@@ -10,6 +10,10 @@ body {
 	top: 50px;
 }
 
+.container {
+	width: 94% !important;
+}
+
 #wrap, #output {
 	left: 3%;
 	right: 3%;
