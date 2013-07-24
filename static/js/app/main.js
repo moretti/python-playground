@@ -1,63 +1,46 @@
 $(function() {
-	//$('#code').linedtextarea();
+	'use strict';
 
-	var editor = CodeMirror.fromTextArea($('#code')[0], {
+	var $code = $('#code');
+	var $output = $('#output');
+
+	var editor = CodeMirror.fromTextArea($code [0], {
 		'lineNumbers': true,
 		'indentUnit': 4,
 		'autoCloseBrackets' : true
 	});
 
-	var output = new PlaygroundOutput($('#output')[0]);
+	var playgroundOutput = new PlaygroundOutput($output[0]);
 	var transport = new HTTPTransport();
+
 	$('#run').click(function(){
 		var body = editor.getValue();
-		transport.Run(body, output)
-	})
+		transport.Run(body, playgroundOutput)
+	});
+
+	$('#format').click(function(){
+		var body = editor.getValue();
+
+		$.ajax('/fmt', {
+			data: {'body': body},
+			type: 'POST',
+			dataType: 'JSON',
+			success: function(data) {
+				if (data.Error) {
+					$output.empty().addClass("error").text(data.Error);
+				} else {
+					editor.setValue(data.Body);
+					$output.empty();
+				}
+			}});
+	});
 });
 
-
 // Copyright 2012 The Go Authors. All rights reserved.
+// http://code.google.com/p/go-playground/
 // Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
-
-/*
-In the absence of any formal way to specify interfaces in JavaScript,
-here's a skeleton implementation of a playground transport.
-
-        function Transport() {
-                // Set up any transport state (eg, make a websocket connnection).
-                return {
-                        Run: function(body, output, options) {
-                                // Compile and run the program 'body' with 'options'.
-				// Call the 'output' callback to display program output.
-                                return {
-                                        Kill: function() {
-                                                // Kill the running program.
-                                        }
-                                };
-                        }
-                };
-        }
-
-	// The output callback is called multiple times, and each time it is
-	// passed an object of this form.
-        var write = {
-                Kind: 'string', // 'start', 'stdout', 'stderr', 'end'
-                Body: 'string'  // content of write or end status message
-        }
-
-	// The first call must be of Kind 'start' with no body.
-	// Subsequent calls may be of Kind 'stdout' or 'stderr'
-	// and must have a non-null Body string.
-	// The final call should be of Kind 'end' with an optional
-	// Body string, signifying a failure ("killed", for example).
-
-	// The output callback must be of this form.
-	// See PlaygroundOutput (below) for an implementation.
-        function outputCallback(write) {
-                // Append writes to 
-        }
-*/
+// license that can be found in the LICENSE file:
+// http://go-playground.googlecode.com/hg/LICENSE
 function HTTPTransport() {
 	'use strict';
 
@@ -130,6 +113,11 @@ function HTTPTransport() {
 	};
 }
 
+// Copyright 2012 The Go Authors. All rights reserved.
+// http://code.google.com/p/go-playground/
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file:
+// http://go-playground.googlecode.com/hg/LICENSE
 function PlaygroundOutput(el) {
 	'use strict';
 
