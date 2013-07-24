@@ -1,0 +1,3 @@
+[submodule "lib/autopep8"]
+	path = lib/autopep8
+	url = https://github.com/hhatto/autopep8.git
