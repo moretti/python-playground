@@ -1,14 +1,16 @@
 $(function() {
 	//$('#code').linedtextarea();
 
-	CodeMirror.fromTextArea($('#code')[0], {
-		'lineNumbers': true
+	var editor = CodeMirror.fromTextArea($('#code')[0], {
+		'lineNumbers': true,
+		'indentUnit': 4,
+		'autoCloseBrackets' : true
 	});
 
 	var output = new PlaygroundOutput($('#output')[0]);
 	var transport = new HTTPTransport();
 	$('#run').click(function(){
-		var body = $('#code').val();
+		var body = editor.getValue();
 		transport.Run(body, output)
 	})
 });

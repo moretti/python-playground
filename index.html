@@ -16,13 +16,14 @@
         <script src="static/js/bootstrap/bootstrap.min.js"></script>
         <script src="static/js/codemirror/codemirror.js"></script>
         <script src="static/js/codemirror/python.js"></script>
+        <script src="static/js/codemirror/closebrackets.js"></script>
         <script src="static/js/app/main.js"></script>
     </head>
     <body>
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" href="#">Python Plaground</a>
+                    <a class="brand" href="#">Python Playground</a>
                     <div class="btn-group">
                         <button id="run" class="btn">Run</button>
                         <button id="format" class="btn">Format</button>
@@ -34,7 +35,6 @@
 
         <div class="container">
             
-            <!-- TODO: Codemirror.net -->
             <div id="wrap">
                 <textarea itemprop="description" id="code" name="code" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false">{{ body }}</textarea>
             </div>
