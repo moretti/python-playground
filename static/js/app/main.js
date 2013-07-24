@@ -1,6 +1,10 @@
 $(function() {
 	//$('#code').linedtextarea();
 
+	CodeMirror.fromTextArea($('#code')[0], {
+		'lineNumbers': true
+	});
+
 	var output = new PlaygroundOutput($('#output')[0]);
 	var transport = new HTTPTransport();
 	$('#run').click(function(){
