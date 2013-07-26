@@ -23,13 +23,18 @@
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" href="/"><span class="brand-title">Python Playground<span></a>
-                    <div class="btn-group">
-                        <button id="run" class="btn btn-primary">Run</button>
-                        <button id="format" class="btn btn-primary">Format</button>
-                        <button id="share" class="btn btn-primary">Share</button>
+                    <div class="pull-left">
+                        <a class="brand" href="/"><span class="brand-title">Python Playground<span></a>
+                        <div class="btn-group">
+                            <button id="run" class="btn btn-primary">Run</button>
+                            <button id="format" class="btn btn-primary">Format</button>
+                            <button id="share" class="btn btn-primary">Share</button>
+                        </div>
+                        <input type="text" id="share-url">
                     </div>
-                    <input type="text" id="share-url">
+                    <div class="pull-right">
+                        <a href="#about-modal" role="button" class="btn btn-info" data-toggle="modal">About</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -40,12 +45,18 @@
             </div>
             <pre id="output"></pre>
 
-            <!--hr>
-
-            <footer>
-                <p><span class="flipped">&copy;</span> Python Playground 2013</p>
-            </footer-->
-
+            <!-- Modal -->
+            <div id="about-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="myModalLabel">About the Playground</h3>
+                </div>
+                <div class="modal-body">
+                    <p>The Python Playground is a web service inspired to the <a href="http://play.golang.org/">Go Playground</a> that runs on <a href="https://appengine.google.com/">Google App Engine</a>. The service receives a Python program, runs it inside a sandbox and then returns the output.</p>
+                    <p>To find the Python version used by the the playground, run <a href="/p/MaIpLANuL3">this program</a>.</p>
+                    <p>The source code is available on <a href="http://github.com/moretti/python-playground">Github<a>.</p>
+                </div>
+            </div>
         </div>
 
         <!--script>
