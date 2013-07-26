@@ -15,7 +15,7 @@ $(function() {
 
 	$('#run').click(function(){
 		var body = editor.getValue();
-		transport.Run(body, playgroundOutput)
+		transport.Run(body, playgroundOutput);
 	});
 
 	$('#format').click(function(){
@@ -27,7 +27,7 @@ $(function() {
 			dataType: 'JSON',
 			success: function(data) {
 				if (data.Error) {
-					$output.empty().addClass("error").text(data.Error);
+					$output.empty().addClass('error').text(data.Error);
 				} else {
 					editor.setValue(data.Body);
 					$output.empty();
@@ -36,7 +36,7 @@ $(function() {
 	});
 
 	var origin = function (href) {
-		return (""+href).split("/").slice(0, 3).join("/");
+		return ('' + href).split('/').slice(0, 3).join('/');
 	};
 
 	$('#share').click(function(){
@@ -46,7 +46,7 @@ $(function() {
 			data: {'body': body},
 			type: 'POST',
 			success: function(data) {
-				var url = origin(window.location) + "/p/" + data;
+				var url = origin(window.location) + '/p/' + data;
 				$('#share-url').show().val(url).focus().select();
 			}});
 	});
