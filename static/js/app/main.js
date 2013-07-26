@@ -171,14 +171,11 @@ function PlaygroundOutput(el) {
 		m = m.replace(/</g, '&lt;');
 		m = m.replace(/>/g, '&gt;');
 
-		var needScroll = (el.scrollTop + el.offsetHeight) == el.scrollHeight;
-
 		var span = document.createElement('span');
 		span.className = cl;
 		span.innerHTML = m;
 		el.appendChild(span);
 
-		if (needScroll)
-			el.scrollTop = el.scrollHeight - el.offsetHeight;
+		el.scrollTop = el.scrollHeight;
 	}
 }
