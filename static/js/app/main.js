@@ -34,6 +34,22 @@ $(function() {
 				}
 			}});
 	});
+
+	var origin = function (href) {
+		return (""+href).split("/").slice(0, 3).join("/");
+	};
+
+	$('#share').click(function(){
+		var body = editor.getValue();
+
+		$.ajax('/share', {
+			data: {'body': body},
+			type: 'POST',
+			success: function(data) {
+				var url = origin(window.location) + "/p/" + data;
+				$('#share-url').show().val(url).focus().select();
+			}});
+	});
 });
 
 // Copyright 2012 The Go Authors. All rights reserved.

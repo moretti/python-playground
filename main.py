@@ -22,10 +22,17 @@ import autopep8
 
 class Index(webapp2.RequestHandler):
 
-    def get(self):
-        template_values = {'body': 'print "Hello, playground"\n'}
+    def get(self, snippet_id=None):
+        body = 'print "Hello, playground"\n'
+        if snippet_id:
+            snippet = Snippet.get_by_id(snippet_id)
+            if snippet:
+                body = snippet.body
+            else:
+                self.abort(404)
+
         template = settings.JINJA_ENVIRONMENT.get_template('index.html')
-        self.response.write(template.render(template_values))
+        self.response.write(template.render({'body': body}))
 
 
 class Run(webapp2.RequestHandler):
@@ -52,8 +59,22 @@ class Format(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'application/json'
         self.response.write(json.dumps(result))
 
+class Share(webapp2.RequestHandler):
+
+    def post(self):
+        body = self.request.get('body')
+        key = Snippet.create_key(body)
+        snippet = key.get()
+        if not snippet:
+            snippet = Snippet(key=key, body=body)
+            snippet.put()
+
+        self.response.write(snippet.key.id())
+
 app = webapp2.WSGIApplication([
     ('/', Index),
+    ('/p/([A-Za-z0-9\.\-_]{10})', Index),
     ('/run', Run),
     ('/fmt', Format),
+    ('/share', Share),
 ], debug=settings.DEBUG)

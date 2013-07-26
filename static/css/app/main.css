@@ -65,6 +65,13 @@ body {
 	margin: 0;
 }
 
+#share-url {
+	margin-top: 5px;
+	margin-bottom: 0;
+	display: none;
+	width: 300px;
+}
+
 .flipped {
 	-moz-transform: scaleX(-1);
 	-o-transform: scaleX(-1);
