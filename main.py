@@ -10,9 +10,8 @@ import webapp2
 from models import Snippet
 import settings
 
-if settings.DEBUG:
-    # This fixes a pwd import bug for os.path.expanduser() on the app server
-    os.environ.update({'HOME': settings.PROJECT_DIR})
+# This fixes a pwd import bug for os.path.expanduser() on the dev/production server
+os.environ.update({'HOME': settings.PROJECT_DIR})
 
 # Load third-part libraries
 libs = ('autopep8', 'pep8')
